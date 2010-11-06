@@ -90,6 +90,12 @@ module Padrino
       end
 
       app.controller :sessions do
+        get :session, :map => "/session", :provides => [:json] do
+          if authenticated?
+              current_user.to_json(:only => [:username, :email, :name])
+          else
+        end
+
         post :unauthenticated, :map => "/unauthenticated" do
           status 401
           warden.custom_failure! if warden.config.failure_app == self.class
@@ -127,7 +133,7 @@ module Padrino
               redirect options.auth_use_referrer && session[:return_to] ? session.delete(:return_to) :
                    options.auth_success_path
             when :json
-              current_user.to_json(:only => [:email, :name])
+              current_user.to_json(:only => [:username, :email, :name])
           end
         end
 
