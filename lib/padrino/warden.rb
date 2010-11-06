@@ -92,8 +92,8 @@ module Padrino
       app.controller :sessions do
         get :session, :map => "/session", :provides => [:json] do
           if authenticated?
-              current_user.to_json(:only => [:username, :email, :name])
-          else
+            current_user.to_json(:only => [:username, :email, :name])
+          end
         end
 
         post :unauthenticated, :map => "/unauthenticated" do
