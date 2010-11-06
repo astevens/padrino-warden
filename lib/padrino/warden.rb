@@ -137,10 +137,14 @@ module Padrino
           end
         end
 
-        get :logout, :map => app.auth_logout_path do
+        get :logout, :map => app.auth_logout_path, :provides => [:html, :json] do
           authorize!
           logout
-          redirect options.auth_success_path
+          case content_type
+          when :html
+            redirect options.auth_success_path
+          when :json
+            { :logout => "success" }.to_json
         end
       end
     end
