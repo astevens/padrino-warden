@@ -141,10 +141,11 @@ module Padrino
           authorize!
           logout
           case content_type
-          when :html
-            redirect options.auth_success_path
-          when :json
-            { :logout => "success" }.to_json
+            when :html
+              redirect options.auth_success_path
+            when :json
+              { :logout => "success" }.to_json
+          end
         end
       end
     end
