@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 group :runtime do
-  gem 'sinatra',        '>= 0.9.4'
+  gem 'sinatra',        '>= 1.4'
   gem 'warden',         '>= 0.10.3'
 end
 
